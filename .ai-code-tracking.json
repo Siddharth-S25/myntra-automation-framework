@@ -1,0 +1,341 @@
+{
+  "version": "1.0",
+  "records": [
+    {
+      "filePath": "C:/Users/Admin/IdeaProjects/myntra-automation-framework/src/test/java/com/myntra/factory/DriverFactory.java",
+      "timestamp": 1766228267293,
+      "startOffset": 0,
+      "endOffset": 60,
+      "codeContent": "package com.myntra.factory;\n\npublic class DriverFactory {\n}\n",
+      "aiProbability": 90,
+      "aiTool": "AI Assistant",
+      "detectionMethod": "REALTIME_SPEED_ANALYSIS",
+      "lineCount": 5
+    },
+    {
+      "filePath": "C:/Users/Admin/IdeaProjects/myntra-automation-framework/src/test/java/com/myntra/factory/DriverFactory.java",
+      "timestamp": 1766228300210,
+      "startOffset": 29,
+      "endOffset": 2793,
+      "codeContent": "import io.github.bonigarcia.wdm.WebDriverManager;\nimport org.openqa.selenium.WebDriver;\nimport org.openqa.selenium.chrome.ChromeDriver;\nimport org.openqa.selenium.chrome.ChromeOptions;\nimport org.openqa.selenium.edge.EdgeDriver;\nimport org.openqa.selenium.firefox.FirefoxDriver;\nimport org.slf4j.Logger;\nimport org.slf4j.LoggerFactory;\n\nimport java.time.Duration;\n\npublic class DriverFactory {\n    \n    private static final Logger logger \u003d LoggerFactory.getLogger(DriverFactory.class);\n    private static final ThreadLocal\u003cWebDriver\u003e driver \u003d new ThreadLocal\u003c\u003e();\n    \n    public WebDriver initDriver(String browser) {\n        logger.info(\"Initializing WebDriver for browser: {}\", browser);\n        \n        switch (browser.toLowerCase()) {\n            case \"chrome\":\n                WebDriverManager.chromedriver().setup();\n                ChromeOptions chromeOptions \u003d getChromeOptions();\n                driver.set(new ChromeDriver(chromeOptions));\n                break;\n                \n            case \"firefox\":\n                WebDriverManager.firefoxdriver().setup();\n                driver.set(new FirefoxDriver());\n                break;\n                \n            case \"edge\":\n                WebDriverManager.edgedriver().setup();\n                driver.set(new EdgeDriver());\n                break;\n                \n            default:\n                logger.error(\"Invalid browser name: {}. Defaulting to Chrome\", browser);\n                WebDriverManager.chromedriver().setup();\n                driver.set(new ChromeDriver(getChromeOptions()));\n        }\n        \n        getDriver().manage().deleteAllCookies();\n        getDriver().manage().window().maximize();\n        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));\n        getDriver().manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));\n        \n        logger.info(\"WebDriver initialized successfully\");\n        return getDriver();\n    }\n    \n    private ChromeOptions getChromeOptions() {\n        ChromeOptions options \u003d new ChromeOptions();\n        options.addArguments(\"--start-maximized\");\n        options.addArguments(\"--disable-notifications\");\n        options.addArguments(\"--disable-popup-blocking\");\n        options.addArguments(\"--remote-allow-origins\u003d*\");\n        options.addArguments(\"--disable-blink-features\u003dAutomationControlled\");\n        options.setExperimentalOption(\"excludeSwitches\", new String[]{\"enable-automation\"});\n        return options;\n    }\n    \n    public static WebDriver getDriver() {\n        return driver.get();\n    }\n    \n    public static void quitDriver() {\n        if (driver.get() !\u003d null) {\n            logger.info(\"Closing WebDriver\");\n            driver.get().quit();\n            driver.remove();\n        }\n    }\n}",
+      "aiProbability": 70,
+      "aiTool": "AI Assistant",
+      "detectionMethod": "REALTIME_SPEED_ANALYSIS",
+      "lineCount": 74
+    },
+    {
+      "filePath": "C:/Users/Admin/IdeaProjects/myntra-automation-framework/src/test/java/com/myntra/factory/DriverFactory.java",
+      "timestamp": 1766228356878,
+      "startOffset": 62,
+      "endOffset": 2421,
+      "codeContent": "private static final Logger logger \u003d LoggerFactory.getLogger(DriverFactory.class);\n    private static final ThreadLocal\u003cWebDriver\u003e driver \u003d new ThreadLocal\u003c\u003e();\n    \n    public WebDriver initDriver(String browser) {\n        logger.info(\"Initializing WebDriver for browser: {}\", browser);\n        \n        switch (browser.toLowerCase()) {\n            case \"chrome\":\n                WebDriverManager.chromedriver().setup();\n                ChromeOptions chromeOptions \u003d getChromeOptions();\n                driver.set(new ChromeDriver(chromeOptions));\n                break;\n                \n            case \"firefox\":\n                WebDriverManager.firefoxdriver().setup();\n                driver.set(new FirefoxDriver());\n                break;\n                \n            case \"edge\":\n                WebDriverManager.edgedriver().setup();\n                driver.set(new EdgeDriver());\n                break;\n                \n            default:\n                logger.error(\"Invalid browser name: {}. Defaulting to Chrome\", browser);\n                WebDriverManager.chromedriver().setup();\n                driver.set(new ChromeDriver(getChromeOptions()));\n        }\n        \n        getDriver().manage().deleteAllCookies();\n        getDriver().manage().window().maximize();\n        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));\n        getDriver().manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));\n        \n        logger.info(\"WebDriver initialized successfully\");\n        return getDriver();\n    }\n    \n    private ChromeOptions getChromeOptions() {\n        ChromeOptions options \u003d new ChromeOptions();\n        options.addArguments(\"--start-maximized\");\n        options.addArguments(\"--disable-notifications\");\n        options.addArguments(\"--disable-popup-blocking\");\n        options.addArguments(\"--remote-allow-origins\u003d*\");\n        options.addArguments(\"--disable-blink-features\u003dAutomationControlled\");\n        options.setExperimentalOption(\"excludeSwitches\", new String[]{\"enable-automation\"});\n        return options;\n    }\n    \n    public static WebDriver getDriver() {\n        return driver.get();\n    }\n    \n    public static void quitDriver() {\n        if (driver.get() !\u003d null) {\n            logger.info(\"Closing WebDriver\");\n            driver.get().quit();\n            driver.remove();\n        }\n    }",
+      "aiProbability": 70,
+      "aiTool": "AI Assistant",
+      "detectionMethod": "REALTIME_SPEED_ANALYSIS",
+      "lineCount": 60
+    },
+    {
+      "filePath": "C:/Users/Admin/IdeaProjects/myntra-automation-framework/src/test/java/com/myntra/factory/DriverFactory.java",
+      "timestamp": 1766228374030,
+      "startOffset": 29,
+      "endOffset": 392,
+      "codeContent": "import io.github.bonigarcia.wdm.WebDriverManager;\nimport org.openqa.selenium.WebDriver;\nimport org.openqa.selenium.chrome.ChromeDriver;\nimport org.openqa.selenium.chrome.ChromeOptions;\nimport org.openqa.selenium.edge.EdgeDriver;\nimport org.openqa.selenium.firefox.FirefoxDriver;\nimport org.slf4j.Logger;\nimport org.slf4j.LoggerFactory;\n\nimport java.time.Duration;",
+      "aiProbability": 70,
+      "aiTool": "AI Assistant",
+      "detectionMethod": "REALTIME_SPEED_ANALYSIS",
+      "lineCount": 10
+    },
+    {
+      "filePath": "/DriverFactory.java",
+      "timestamp": 1766228381844,
+      "startOffset": 570,
+      "endOffset": 621,
+      "codeContent": "java.lang.ThreadLocal\u003corg.openqa.selenium.WebDriver",
+      "aiProbability": 90,
+      "aiTool": "AI Assistant",
+      "detectionMethod": "REALTIME_SPEED_ANALYSIS",
+      "lineCount": 1
+    },
+    {
+      "filePath": "/DriverFactory.java",
+      "timestamp": 1766228406661,
+      "startOffset": 391,
+      "endOffset": 493,
+      "codeContent": "import static org.bouncycastle.oer.its.template.ieee1609dot2.basetypes.Ieee1609Dot2BaseTypes.Duration;",
+      "aiProbability": 95,
+      "aiTool": "AI Assistant",
+      "detectionMethod": "REALTIME_SPEED_ANALYSIS",
+      "lineCount": 1
+    },
+    {
+      "filePath": "C:/Users/Admin/IdeaProjects/myntra-automation-framework/src/test/java/com/myntra/pages/BasePage.java",
+      "timestamp": 1766228468578,
+      "startOffset": 0,
+      "endOffset": 53,
+      "codeContent": "package com.myntra.pages;\n\npublic class BasePage {\n}\n",
+      "aiProbability": 90,
+      "aiTool": "AI Assistant",
+      "detectionMethod": "REALTIME_SPEED_ANALYSIS",
+      "lineCount": 5
+    },
+    {
+      "filePath": "C:/Users/Admin/IdeaProjects/myntra-automation-framework/src/test/java/com/myntra/pages/BasePage.java",
+      "timestamp": 1766228478320,
+      "startOffset": 27,
+      "endOffset": 3451,
+      "codeContent": "import com.myntra.factory.DriverFactory;\nimport org.openqa.selenium.*;\nimport org.openqa.selenium.interactions.Actions;\nimport org.openqa.selenium.support.ui.ExpectedConditions;\nimport org.openqa.selenium.support.ui.WebDriverWait;\nimport org.slf4j.Logger;\nimport org.slf4j.LoggerFactory;\n\nimport java.time.Duration;\nimport java.util.Set;\n\npublic class BasePage {\n    \n    protected WebDriver driver;\n    protected WebDriverWait wait;\n    protected Actions actions;\n    protected static final Logger logger \u003d LoggerFactory.getLogger(BasePage.class);\n    \n    public BasePage() {\n        this.driver \u003d DriverFactory.getDriver();\n        this.wait \u003d new WebDriverWait(driver, Duration.ofSeconds(15));\n        this.actions \u003d new Actions(driver);\n    }\n    \n    protected WebElement waitForElementVisible(By locator) {\n        logger.debug(\"Waiting for element to be visible: {}\", locator);\n        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));\n    }\n    \n    protected WebElement waitForElementClickable(By locator) {\n        logger.debug(\"Waiting for element to be clickable: {}\", locator);\n        return wait.until(ExpectedConditions.elementToBeClickable(locator));\n    }\n    \n    protected void clickElement(By locator) {\n        waitForElementClickable(locator).click();\n        logger.info(\"Clicked on element: {}\", locator);\n    }\n    \n    protected void enterText(By locator, String text) {\n        WebElement element \u003d waitForElementVisible(locator);\n        element.clear();\n        element.sendKeys(text);\n        logger.info(\"Entered text \u0027{}\u0027 in element: {}\", text, locator);\n    }\n    \n    protected String getElementText(By locator) {\n        String text \u003d waitForElementVisible(locator).getText();\n        logger.debug(\"Retrieved text \u0027{}\u0027 from element: {}\", text, locator);\n        return text;\n    }\n    \n    protected boolean isElementDisplayed(By locator) {\n        try {\n            return driver.findElement(locator).isDisplayed();\n        } catch (NoSuchElementException e) {\n            return false;\n        }\n    }\n    \n    protected void switchToNewWindow() {\n        String parentWindow \u003d driver.getWindowHandle();\n        wait.until(driver -\u003e driver.getWindowHandles().size() \u003e 1);\n        \n        Set\u003cString\u003e windows \u003d driver.getWindowHandles();\n        for (String window : windows) {\n            if (!window.equals(parentWindow)) {\n                driver.switchTo().window(window);\n                logger.info(\"Switched to new window. Total windows: {}\", driver.getWindowHandles().size());\n                break;\n            }\n        }\n    }\n    \n    protected void scrollToElement(WebElement element) {\n        JavascriptExecutor js \u003d (JavascriptExecutor) driver;\n        js.executeScript(\"arguments[0].scrollIntoView(true);\", element);\n        logger.debug(\"Scrolled to element\");\n    }\n    \n    protected void waitForPageLoad() {\n        wait.until(driver -\u003e ((JavascriptExecutor) driver)\n                .executeScript(\"return document.readyState\").equals(\"complete\"));\n    }\n    \n    protected byte[] takeScreenshot() {\n        return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);\n    }\n    \n    protected String getPageTitle() {\n        String title \u003d driver.getTitle();\n        logger.info(\"Current page title: {}\", title);\n        return title;\n    }\n    \n    protected String getCurrentUrl() {\n        return driver.getCurrentUrl();\n    }\n}",
+      "aiProbability": 90,
+      "aiTool": "AI Assistant",
+      "detectionMethod": "REALTIME_SPEED_ANALYSIS",
+      "lineCount": 99
+    },
+    {
+      "filePath": "C:/Users/Admin/IdeaProjects/myntra-automation-framework/src/test/java/com/myntra/utils/ConfigReader.java",
+      "timestamp": 1766229442795,
+      "startOffset": 0,
+      "endOffset": 57,
+      "codeContent": "package com.myntra.utils;\n\npublic class ConfigReader {\n}\n",
+      "aiProbability": 90,
+      "aiTool": "AI Assistant",
+      "detectionMethod": "REALTIME_SPEED_ANALYSIS",
+      "lineCount": 5
+    },
+    {
+      "filePath": "C:/Users/Admin/IdeaProjects/myntra-automation-framework/src/test/java/com/myntra/utils/ConfigReader.java",
+      "timestamp": 1766229454337,
+      "startOffset": 27,
+      "endOffset": 1299,
+      "codeContent": "import org.slf4j.Logger;\nimport org.slf4j.LoggerFactory;\n\nimport java.io.FileInputStream;\nimport java.io.IOException;\nimport java.util.Properties;\n\npublic class ConfigReader {\n    \n    private static final Logger logger \u003d LoggerFactory.getLogger(ConfigReader.class);\n    private static Properties properties;\n    \n    static {\n        try {\n            String configPath \u003d \"src/test/resources/config/config.properties\";\n            FileInputStream fis \u003d new FileInputStream(configPath);\n            properties \u003d new Properties();\n            properties.load(fis);\n            fis.close();\n            logger.info(\"Configuration loaded successfully from: {}\", configPath);\n        } catch (IOException e) {\n            logger.error(\"Failed to load configuration file\", e);\n            throw new RuntimeException(\"Configuration file not found: \" + e.getMessage());\n        }\n    }\n    \n    public static String getProperty(String key) {\n        String value \u003d properties.getProperty(key);\n        if (value \u003d\u003d null) {\n            logger.warn(\"Property key \u0027{}\u0027 not found in config file\", key);\n        }\n        return value;\n    }\n    \n    public static String getProperty(String key, String defaultValue) {\n        return properties.getProperty(key, defaultValue);\n    }\n}",
+      "aiProbability": 90,
+      "aiTool": "AI Assistant",
+      "detectionMethod": "REALTIME_SPEED_ANALYSIS",
+      "lineCount": 38
+    },
+    {
+      "filePath": "C:/Users/Admin/IdeaProjects/myntra-automation-framework/src/test/java/com/myntra/runners/TestRunner.java",
+      "timestamp": 1766230179495,
+      "startOffset": 0,
+      "endOffset": 57,
+      "codeContent": "package com.myntra.runners;\n\npublic class TestRunner {\n}\n",
+      "aiProbability": 90,
+      "aiTool": "AI Assistant",
+      "detectionMethod": "REALTIME_SPEED_ANALYSIS",
+      "lineCount": 5
+    },
+    {
+      "filePath": "C:/Users/Admin/IdeaProjects/myntra-automation-framework/src/test/java/com/myntra/runners/TestRunner.java",
+      "timestamp": 1766230208496,
+      "startOffset": 29,
+      "endOffset": 889,
+      "codeContent": "import io.cucumber.testng.AbstractTestNGCucumberTests;\nimport io.cucumber.testng.CucumberOptions;\nimport org.testng.annotations.DataProvider;\n\n@CucumberOptions(\n        features \u003d \"src/test/resources/features\",\n        glue \u003d {\"com.myntra.stepdefinitions\"},\n        plugin \u003d {\n                \"pretty\",\n                \"html:target/cucumber-reports/cucumber.html\",\n                \"json:target/cucumber-reports/cucumber.json\",\n                \"junit:target/cucumber-reports/cucumber.xml\",\n                \"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:\"\n        },\n        monochrome \u003d true,\n        dryRun \u003d false,\n        tags \u003d \"@E2ETest\"\n)\npublic class TestRunner extends AbstractTestNGCucumberTests {\n    \n    @Override\n    @DataProvider(parallel \u003d false)\n    public Object[][] scenarios() {\n        return super.scenarios();\n    }\n}",
+      "aiProbability": 70,
+      "aiTool": "AI Assistant",
+      "detectionMethod": "REALTIME_SPEED_ANALYSIS",
+      "lineCount": 26
+    },
+    {
+      "filePath": "C:/Users/Admin/IdeaProjects/myntra-automation-framework/src/test/java/com/myntra/stepdefinitions/Hooks.java",
+      "timestamp": 1766230244434,
+      "startOffset": 0,
+      "endOffset": 60,
+      "codeContent": "package com.myntra.stepdefinitions;\n\npublic class Hooks {\n}\n",
+      "aiProbability": 90,
+      "aiTool": "AI Assistant",
+      "detectionMethod": "REALTIME_SPEED_ANALYSIS",
+      "lineCount": 5
+    },
+    {
+      "filePath": "C:/Users/Admin/IdeaProjects/myntra-automation-framework/src/test/java/com/myntra/stepdefinitions/Hooks.java",
+      "timestamp": 1766230252428,
+      "startOffset": 0,
+      "endOffset": 1776,
+      "codeContent": "package com.myntra.stepdefinitions;\n\nimport com.myntra.factory.DriverFactory;\nimport com.myntra.utils.ConfigReader;\nimport io.cucumber.java.*;\nimport org.openqa.selenium.OutputType;\nimport org.openqa.selenium.TakesScreenshot;\nimport org.slf4j.Logger;\nimport org.slf4j.LoggerFactory;\n\npublic class Hooks {\n    \n    private static final Logger logger \u003d LoggerFactory.getLogger(Hooks.class);\n    private DriverFactory driverFactory;\n    \n    @Before\n    public void setUp(Scenario scenario) {\n        logger.info(\"\u003d\".repeat(80));\n        logger.info(\"Starting Scenario: {}\", scenario.getName());\n        logger.info(\"\u003d\".repeat(80));\n        \n        String browser \u003d ConfigReader.getProperty(\"browser\");\n        driverFactory \u003d new DriverFactory();\n        driverFactory.initDriver(browser);\n    }\n    \n    @After\n    public void tearDown(Scenario scenario) {\n        if (scenario.isFailed()) {\n            logger.error(\"Scenario Failed: {}\", scenario.getName());\n            byte[] screenshot \u003d ((TakesScreenshot) DriverFactory.getDriver())\n                    .getScreenshotAs(OutputType.BYTES);\n            scenario.attach(screenshot, \"image/png\", scenario.getName());\n            logger.info(\"Screenshot captured for failed scenario\");\n        }\n        \n        logger.info(\"\u003d\".repeat(80));\n        logger.info(\"Scenario Status: {}\", scenario.getStatus());\n        logger.info(\"Completing Scenario: {}\", scenario.getName());\n        logger.info(\"\u003d\".repeat(80));\n        \n        DriverFactory.quitDriver();\n    }\n    \n    @BeforeStep\n    public void beforeStep(Scenario scenario) {\n        // Can be used for step-level logging or setup\n    }\n    \n    @AfterStep\n    public void afterStep(Scenario scenario) {\n        // Capture screenshot after each step (optional)\n    }\n}",
+      "aiProbability": 90,
+      "aiTool": "AI Assistant",
+      "detectionMethod": "REALTIME_SPEED_ANALYSIS",
+      "lineCount": 54
+    },
+    {
+      "filePath": "C:/Users/Admin/IdeaProjects/myntra-automation-framework/src/test/java/com/myntra/stepdefinitions/MyntraStepDefinitions.java",
+      "timestamp": 1766230286903,
+      "startOffset": 0,
+      "endOffset": 76,
+      "codeContent": "package com.myntra.stepdefinitions;\n\npublic class MyntraStepDefinitions {\n}\n",
+      "aiProbability": 90,
+      "aiTool": "AI Assistant",
+      "detectionMethod": "REALTIME_SPEED_ANALYSIS",
+      "lineCount": 5
+    },
+    {
+      "filePath": "C:/Users/Admin/IdeaProjects/myntra-automation-framework/src/test/java/com/myntra/stepdefinitions/MyntraStepDefinitions.java",
+      "timestamp": 1766230328305,
+      "startOffset": 37,
+      "endOffset": 3941,
+      "codeContent": "import com.myntra.factory.DriverFactory;\nimport com.myntra.pages.*;\nimport com.myntra.utils.ConfigReader;\nimport io.cucumber.java.en.*;\nimport org.testng.Assert;\nimport org.slf4j.Logger;\nimport org.slf4j.LoggerFactory;\n\npublic class MyntraStepDefinitions {\n    \n    private static final Logger logger \u003d LoggerFactory.getLogger(MyntraStepDefinitions.class);\n    \n    private HomePage homePage;\n    private SearchResultsPage searchResultsPage;\n    private ProductDetailsPage productDetailsPage;\n    private ShoppingBagPage shoppingBagPage;\n    private String baseUrl;\n    \n    public MyntraStepDefinitions() {\n        this.homePage \u003d new HomePage();\n        this.searchResultsPage \u003d new SearchResultsPage();\n        this.productDetailsPage \u003d new ProductDetailsPage();\n        this.shoppingBagPage \u003d new ShoppingBagPage();\n        this.baseUrl \u003d ConfigReader.getProperty(\"base.url\");\n    }\n    \n    @Given(\"User navigates to Myntra homepage\")\n    public void user_navigates_to_myntra_homepage() {\n        homePage.navigateToHomePage(baseUrl);\n        Assert.assertTrue(homePage.isHomePageLoaded(), \"Home page is not loaded\");\n        logger.info(\"✓ Step: User navigated to Myntra homepage\");\n    }\n    \n    @When(\"User searches for {string}\")\n    public void user_searches_for(String productName) {\n        homePage.searchProduct(productName);\n        logger.info(\"✓ Step: User searched for product: {}\", productName);\n    }\n    \n    @When(\"User clicks on the first product from search results\")\n    public void user_clicks_on_the_first_product_from_search_results() {\n        Assert.assertTrue(searchResultsPage.areSearchResultsDisplayed(), \n                \"Search results are not displayed\");\n        searchResultsPage.clickFirstProduct();\n        logger.info(\"✓ Step: User clicked on first product\");\n    }\n    \n    @When(\"User selects a product size\")\n    public void user_selects_a_product_size() {\n        productDetailsPage.selectSize();\n        logger.info(\"✓ Step: User selected product size\");\n    }\n    \n    @When(\"User adds the product to bag\")\n    public void user_adds_the_product_to_bag() {\n        Assert.assertTrue(productDetailsPage.isAddToBagButtonDisplayed(), \n                \"Add to Bag button is not displayed\");\n        productDetailsPage.addProductToBag();\n        logger.info(\"✓ Step: User added product to bag\");\n    }\n    \n    @Then(\"Product should be added to bag successfully\")\n    public void product_should_be_added_to_bag_successfully() {\n        Assert.assertTrue(shoppingBagPage.isGoToBagButtonDisplayed(), \n                \"Go to Bag button is not displayed - Product not added\");\n        logger.info(\"✓ Step: Product added to bag successfully verified\");\n    }\n    \n    @When(\"User navigates to shopping bag\")\n    public void user_navigates_to_shopping_bag() {\n        shoppingBagPage.navigateToShoppingBag();\n        Assert.assertTrue(shoppingBagPage.isProductInBag(), \n                \"No products found in bag\");\n        logger.info(\"✓ Step: User navigated to shopping bag\");\n    }\n    \n    @When(\"User clicks on place order button\")\n    public void user_clicks_on_place_order_button() {\n        Assert.assertTrue(shoppingBagPage.isPlaceOrderButtonDisplayed(), \n                \"Place Order button is not displayed\");\n        shoppingBagPage.clickPlaceOrder();\n        logger.info(\"✓ Step: User clicked on Place Order button\");\n    }\n    \n    @Then(\"User should be navigated to checkout page\")\n    public void user_should_be_navigated_to_checkout_page() {\n        String currentUrl \u003d DriverFactory.getDriver().getCurrentUrl();\n        Assert.assertTrue(currentUrl.contains(\"checkout\") || currentUrl.contains(\"login\"), \n                \"User is not navigated to checkout/login page. Current URL: \" + currentUrl);\n        logger.info(\"✓ Step: User navigated to checkout page successfully\");\n        logger.info(\"✓ E2E Test Completed Successfully! Thank You!\");\n    }\n}",
+      "aiProbability": 70,
+      "aiTool": "AI Assistant",
+      "detectionMethod": "REALTIME_SPEED_ANALYSIS",
+      "lineCount": 93
+    },
+    {
+      "filePath": "C:/Users/Admin/IdeaProjects/myntra-automation-framework/src/test/java/com/myntra/pages/HomePage.java",
+      "timestamp": 1766232030040,
+      "startOffset": 0,
+      "endOffset": 53,
+      "codeContent": "package com.myntra.pages;\n\npublic class HomePage {\n}\n",
+      "aiProbability": 90,
+      "aiTool": "AI Assistant",
+      "detectionMethod": "REALTIME_SPEED_ANALYSIS",
+      "lineCount": 5
+    },
+    {
+      "filePath": "C:/Users/Admin/IdeaProjects/myntra-automation-framework/src/test/java/com/myntra/pages/ProductDetailsPage.java",
+      "timestamp": 1766232053228,
+      "startOffset": 0,
+      "endOffset": 63,
+      "codeContent": "package com.myntra.pages;\n\npublic class ProductDetailsPage {\n}\n",
+      "aiProbability": 90,
+      "aiTool": "AI Assistant",
+      "detectionMethod": "REALTIME_SPEED_ANALYSIS",
+      "lineCount": 5
+    },
+    {
+      "filePath": "C:/Users/Admin/IdeaProjects/myntra-automation-framework/src/test/java/com/myntra/pages/SearchResultsPage.java",
+      "timestamp": 1766232063349,
+      "startOffset": 0,
+      "endOffset": 62,
+      "codeContent": "package com.myntra.pages;\n\npublic class SearchResultsPage {\n}\n",
+      "aiProbability": 90,
+      "aiTool": "AI Assistant",
+      "detectionMethod": "REALTIME_SPEED_ANALYSIS",
+      "lineCount": 5
+    },
+    {
+      "filePath": "C:/Users/Admin/IdeaProjects/myntra-automation-framework/src/test/java/com/myntra/pages/ShoppingBagPage.java",
+      "timestamp": 1766232076601,
+      "startOffset": 0,
+      "endOffset": 60,
+      "codeContent": "package com.myntra.pages;\n\npublic class ShoppingBagPage {\n}\n",
+      "aiProbability": 90,
+      "aiTool": "AI Assistant",
+      "detectionMethod": "REALTIME_SPEED_ANALYSIS",
+      "lineCount": 5
+    },
+    {
+      "filePath": "/HomePage.java",
+      "timestamp": 1766232271094,
+      "startOffset": 51,
+      "endOffset": 98,
+      "codeContent": "public\u003c__TMP__\u003e __TMP__ navigateToHomePage() {}",
+      "aiProbability": 90,
+      "aiTool": "AI Assistant",
+      "detectionMethod": "REALTIME_SPEED_ANALYSIS",
+      "lineCount": 1
+    },
+    {
+      "filePath": "/HomePage.java",
+      "timestamp": 1766232274034,
+      "startOffset": 51,
+      "endOffset": 96,
+      "codeContent": "public\u003c__TMP__\u003e __TMP__ isHomePageLoaded() {}",
+      "aiProbability": 90,
+      "aiTool": "AI Assistant",
+      "detectionMethod": "REALTIME_SPEED_ANALYSIS",
+      "lineCount": 1
+    },
+    {
+      "filePath": "C:/Users/Admin/IdeaProjects/myntra-automation-framework/src/test/java/com/myntra/pages/ProductDetailsPage.java",
+      "timestamp": 1766232430350,
+      "startOffset": 27,
+      "endOffset": 2587,
+      "codeContent": "import org.openqa.selenium.By;\nimport org.openqa.selenium.WebElement;\n\nimport java.util.List;\n\n/**\n * ProductDetailsPage - Page Object Model for Product Details\n * Contains elements and methods for product details page interactions\n */\npublic class ProductDetailsPage extends BasePage {\n    \n    // Locators\n    private final By sizeButtons \u003d By.xpath(\"//div[@class\u003d\u0027size-buttons-buttonContainer\u0027]\");\n    private final By addToBagButton \u003d By.xpath(\"//div[text()\u003d\u0027ADD TO BAG\u0027]\");\n    private final By productTitle \u003d By.xpath(\"//h1[@class\u003d\u0027pdp-title\u0027]\");\n    private final By productPrice \u003d By.xpath(\"//span[@class\u003d\u0027pdp-price\u0027]\");\n    private final By sizeNotSelectedError \u003d By.xpath(\"//div[text()\u003d\u0027Please select a size\u0027]\");\n    \n    /**\n     * Selects a product size (default: second size)\n     */\n    public void selectSize() {\n        List\u003cWebElement\u003e sizes \u003d wait.until(driver -\u003e \n            driver.findElements(sizeButtons));\n        \n        if (!sizes.isEmpty()) {\n            // Select the second available size\n            int sizeIndex \u003d sizes.size() \u003e 1 ? 1 : 0;\n            sizes.get(sizeIndex).click();\n            logger.info(\"✓ Selected product size at index: {}\", sizeIndex);\n        } else {\n            logger.warn(\"No size buttons found!\");\n        }\n    }\n    \n    /**\n     * Selects size by index\n     */\n    public void selectSizeByIndex(int index) {\n        List\u003cWebElement\u003e sizes \u003d wait.until(driver -\u003e \n            driver.findElements(sizeButtons));\n        \n        if (sizes.size() \u003e index) {\n            sizes.get(index).click();\n            logger.info(\"✓ Selected product size at index: {}\", index);\n        }\n    }\n    \n    /**\n     * Adds product to bag\n     */\n    public void addProductToBag() {\n        String productName \u003d getProductTitle();\n        clickElement(addToBagButton);\n        logger.info(\"✓ Product \u0027{}\u0027 added to bag\", productName);\n    }\n    \n    /**\n     * Gets product title\n     */\n    public String getProductTitle() {\n        return getPageTitle();\n    }\n    \n    /**\n     * Gets product price\n     */\n    public String getProductPrice() {\n        if (isElementDisplayed(productPrice)) {\n            return getElementText(productPrice);\n        }\n        return \"\";\n    }\n    \n    /**\n     * Verifies if Add to Bag button is displayed\n     */\n    public boolean isAddToBagButtonDisplayed() {\n        return isElementDisplayed(addToBagButton);\n    }\n    \n    /**\n     * Checks if size is selected\n     */\n    public boolean isSizeSelected() {\n        return !isElementDisplayed(sizeNotSelectedError);\n    }\n}",
+      "aiProbability": 95,
+      "aiTool": "AI Assistant",
+      "detectionMethod": "REALTIME_SPEED_ANALYSIS",
+      "lineCount": 88
+    },
+    {
+      "filePath": "C:/Users/Admin/IdeaProjects/myntra-automation-framework/src/test/java/com/myntra/pages/SearchResultsPage.java",
+      "timestamp": 1766232453796,
+      "startOffset": 27,
+      "endOffset": 1489,
+      "codeContent": "import org.openqa.selenium.By;\n\n/**\n * SearchResultsPage - Page Object Model for Search Results\n * Contains elements and methods for search results page interactions\n */\npublic class SearchResultsPage extends BasePage {\n    \n    // Locators\n    private final By firstProduct \u003d By.xpath(\"//li[@class\u003d\u0027product-base\u0027][1]\");\n    private final By productList \u003d By.xpath(\"//li[@class\u003d\u0027product-base\u0027]\");\n    private final By resultsCount \u003d By.xpath(\"//span[@class\u003d\u0027title-count\u0027]\");\n    \n    /**\n     * Clicks on the first product from search results\n     */\n    public void clickFirstProduct() {\n        String parentWindow \u003d driver.getWindowHandle();\n        waitForElementClickable(firstProduct).click();\n        logger.info(\"✓ Clicked on first product from search results\");\n        \n        // Switch to new window/tab\n        switchToNewWindow();\n        waitForPageLoad();\n    }\n    \n    /**\n     * Gets the count of search results\n     */\n    public int getProductCount() {\n        return driver.findElements(productList).size();\n    }\n    \n    /**\n     * Verifies if search results are displayed\n     */\n    public boolean areSearchResultsDisplayed() {\n        return isElementDisplayed(productList);\n    }\n    \n    /**\n     * Gets results count text\n     */\n    public String getResultsCountText() {\n        if (isElementDisplayed(resultsCount)) {\n            return getElementText(resultsCount);\n        }\n        return \"Results count not displayed\";\n    }\n}",
+      "aiProbability": 95,
+      "aiTool": "AI Assistant",
+      "detectionMethod": "REALTIME_SPEED_ANALYSIS",
+      "lineCount": 50
+    },
+    {
+      "filePath": "C:/Users/Admin/IdeaProjects/myntra-automation-framework/src/test/java/com/myntra/pages/ShoppingBagPage.java",
+      "timestamp": 1766232479718,
+      "startOffset": 27,
+      "endOffset": 2115,
+      "codeContent": "import org.openqa.selenium.By;\n\n/**\n * ShoppingBagPage - Page Object Model for Shopping Bag/Cart\n * Contains elements and methods for shopping bag page interactions\n */\npublic class ShoppingBagPage extends BasePage {\n    \n    // Locators\n    private final By goToBagButton \u003d By.xpath(\"//a[.//span[text()\u003d\u0027GO TO BAG\u0027]]\");\n    private final By placeOrderButton \u003d By.xpath(\"//button[@role\u003d\u0027button\u0027 and (normalize-space()\u003d\u0027PLACE ORDER\u0027)]\");\n    private final By cartItems \u003d By.xpath(\"//div[@class\u003d\u0027itemComponents-base-item\u0027]\");\n    private final By removeButton \u003d By.xpath(\"//div[@class\u003d\u0027inlineButtonV2-base-actionButton itemComponents-base-remove\u0027]\");\n    private final By totalAmount \u003d By.xpath(\"//span[@class\u003d\u0027price-value bold-font\u0027]\");\n    \n    /**\n     * Navigates to shopping bag\n     */\n    public void navigateToShoppingBag() {\n        waitForElementClickable(goToBagButton).click();\n        waitForPageLoad();\n        logger.info(\"✓ Successfully navigated to shopping bag\");\n    }\n    \n    /**\n     * Clicks on Place Order button\n     */\n    public void clickPlaceOrder() {\n        waitForElementClickable(placeOrderButton).click();\n        logger.info(\"✓ Successfully clicked on Place Order button\");\n    }\n    \n    /**\n     * Verifies if product is added to bag\n     */\n    public boolean isProductInBag() {\n        return isElementDisplayed(cartItems);\n    }\n    \n    /**\n     * Gets the count of items in bag\n     */\n    public int getItemCount() {\n        return driver.findElements(cartItems).size();\n    }\n    \n    /**\n     * Gets total amount\n     */\n    public String getTotalAmount() {\n        if (isElementDisplayed(totalAmount)) {\n            return getElementText(totalAmount);\n        }\n        return \"\";\n    }\n    \n    /**\n     * Verifies if Place Order button is displayed\n     */\n    public boolean isPlaceOrderButtonDisplayed() {\n        return isElementDisplayed(placeOrderButton);\n    }\n    \n    /**\n     * Verifies if Go to Bag button is displayed\n     */\n    public boolean isGoToBagButtonDisplayed() {\n        return isElementDisplayed(goToBagButton);\n    }\n}",
+      "aiProbability": 95,
+      "aiTool": "AI Assistant",
+      "detectionMethod": "REALTIME_SPEED_ANALYSIS",
+      "lineCount": 70
+    },
+    {
+      "filePath": "C:/Users/Admin/IdeaProjects/myntra-automation-framework/src/test/java/com/myntra/pages/HomePage.java",
+      "timestamp": 1766340575389,
+      "startOffset": 0,
+      "endOffset": 1929,
+      "codeContent": "package com.myntra.pages;\n\nimport org.openqa.selenium.By;\nimport org.openqa.selenium.Keys;\n\npublic class HomePage extends BasePage {\n    \n    // Updated locators\n    private final By searchBox \u003d By.xpath(\"//input[@class\u003d\u0027desktop-searchBar\u0027]\");\n    private final By myntraLogo \u003d By.xpath(\"//a[contains(@href,\u0027myntra.com\u0027)]\");\n    private final By searchIcon \u003d By.xpath(\"//span[@class\u003d\u0027myntraweb-sprite desktop-iconSearch sprites-headerSearch\u0027]\");\n    \n    public void navigateToHomePage(String url) {\n        driver.get(url);\n        waitForPageLoad();\n        logger.info(\"✓ Navigated to Myntra homepage: {}\", url);\n        \n        // Wait a bit for page to fully load\n        try {\n            Thread.sleep(2000);\n        } catch (InterruptedException e) {\n            Thread.currentThread().interrupt();\n        }\n    }\n    \n    public void searchProduct(String productName) {\n        // Wait for search box to be visible\n        waitForElementVisible(searchBox);\n        enterText(searchBox, productName);\n        driver.findElement(searchBox).sendKeys(Keys.ENTER);\n        logger.info(\"✓ Searched for product: {}\", productName);\n        \n        // Wait for search results to load\n        try {\n            Thread.sleep(3000);\n        } catch (InterruptedException e) {\n            Thread.currentThread().interrupt();\n        }\n    }\n    \n    public boolean isHomePageLoaded() {\n        try {\n            // Check if search box is visible (more reliable than logo)\n            waitForElementVisible(searchBox);\n            logger.info(\"✓ Home page loaded successfully - Search box is visible\");\n            return true;\n        } catch (Exception e) {\n            logger.error(\"✗ Home page not loaded - Search box not found: {}\", e.getMessage());\n            return false;\n        }\n    }\n    \n    public String getSearchBoxPlaceholder() {\n        return waitForElementVisible(searchBox).getAttribute(\"placeholder\");\n    }\n}",
+      "aiProbability": 95,
+      "aiTool": "AI Assistant",
+      "detectionMethod": "REALTIME_SPEED_ANALYSIS",
+      "lineCount": 56
+    },
+    {
+      "filePath": "C:/Users/Admin/IdeaProjects/myntra-automation-framework/src/test/java/com/myntra/pages/ShoppingBagPage.java",
+      "timestamp": 1766790838237,
+      "startOffset": 0,
+      "endOffset": 3980,
+      "codeContent": "package com.myntra.pages;\n\nimport org.openqa.selenium.By;\n\npublic class ShoppingBagPage extends BasePage {\n    \n    // Locators matching your working code\n    private final By goToBagButton \u003d By.xpath(\"//a[.//span[text()\u003d\u0027GO TO BAG\u0027]]\");\n    private final By placeOrderButton \u003d By.xpath(\"//button[@role\u003d\u0027button\u0027 and (normalize-space()\u003d\u0027PLACE ORDER\u0027)]\");\n    private final By cartItems \u003d By.xpath(\"//div[@class\u003d\u0027itemContainer-base-item\u0027]\");\n    private final By removeButton \u003d By.xpath(\"//div[@class\u003d\u0027inlineButtonV2-base-actionButton itemComponents-base-remove\u0027]\");\n    private final By totalAmount \u003d By.xpath(\"//span[@class\u003d\u0027price-value bold-font\u0027]\");\n    \n    /**\n     * Navigates to shopping bag - Same window, just waits for page to load\n     */\n    public void navigateToShoppingBag() {\n        try {\n            logger.info(\"Waiting for GO TO BAG button...\");\n            \n            // Use your exact working locator\n            waitForElementClickable(goToBagButton).click();\n            logger.info(\"✓ Successfully clicked on GO TO BAG button\");\n            \n            // Wait for cart page to load in same window\n            waitForPageLoad();\n            Thread.sleep(3000); // Wait for items to render\n            \n            logger.info(\"✓ Successfully navigated to shopping bag\");\n            logger.info(\"Current URL: {}\", driver.getCurrentUrl());\n            \n        } catch (InterruptedException e) {\n            Thread.currentThread().interrupt();\n            logger.error(\"Interrupted while navigating to bag\");\n        }\n    }\n    \n    /**\n     * Clicks on Place Order button\n     */\n    public void clickPlaceOrder() {\n        try {\n            logger.info(\"Looking for PLACE ORDER button...\");\n            \n            // Use your exact working locator\n            waitForElementClickable(placeOrderButton).click();\n            logger.info(\"✓ Successfully clicked on PLACE ORDER button\");\n            \n        } catch (Exception e) {\n            logger.error(\"Failed to click Place Order button: {}\", e.getMessage());\n            throw e;\n        }\n    }\n    \n    /**\n     * Verifies if products are in the bag\n     */\n    public boolean isProductInBag() {\n        try {\n            logger.info(\"Checking if products are in bag...\");\n            Thread.sleep(2000);\n            \n            boolean hasItems \u003d isElementDisplayed(cartItems);\n            \n            if (hasItems) {\n                logger.info(\"✓ Products found in bag\");\n            } else {\n                logger.error(\"✗ No products found in bag\");\n                logger.error(\"Current URL: {}\", driver.getCurrentUrl());\n            }\n            \n            return hasItems;\n            \n        } catch (InterruptedException e) {\n            Thread.currentThread().interrupt();\n            return false;\n        }\n    }\n    \n    /**\n     * Gets count of items in bag\n     */\n    public int getItemCount() {\n        return driver.findElements(cartItems).size();\n    }\n    \n    /**\n     * Gets total amount\n     */\n    public String getTotalAmount() {\n        if (isElementDisplayed(totalAmount)) {\n            return getElementText(totalAmount);\n        }\n        return \"\";\n    }\n    \n    /**\n     * Verifies if Place Order button is displayed\n     */\n    public boolean isPlaceOrderButtonDisplayed() {\n        return isElementDisplayed(placeOrderButton);\n    }\n    \n    /**\n     * Verifies if Go to Bag button is displayed\n     */\n    public boolean isGoToBagButtonDisplayed() {\n        try {\n            Thread.sleep(2000);\n            boolean displayed \u003d isElementDisplayed(goToBagButton);\n            \n            if (displayed) {\n                logger.info(\"✓ GO TO BAG button is displayed\");\n            } else {\n                logger.error(\"✗ GO TO BAG button is NOT displayed\");\n            }\n            \n            return displayed;\n        } catch (InterruptedException e) {\n            Thread.currentThread().interrupt();\n            return false;\n        }\n    }\n}",
+      "aiProbability": 95,
+      "aiTool": "AI Assistant",
+      "detectionMethod": "REALTIME_SPEED_ANALYSIS",
+      "lineCount": 124
+    },
+    {
+      "filePath": "C:/Users/Admin/IdeaProjects/myntra-automation-framework/src/test/java/com/myntra/pages/SearchResultsPage.java",
+      "timestamp": 1766790892064,
+      "startOffset": 0,
+      "endOffset": 2163,
+      "codeContent": "package com.myntra.pages;\n\nimport org.openqa.selenium.By;\n\npublic class SearchResultsPage extends BasePage {\n    \n    private final By firstProduct \u003d By.xpath(\"//li[@class\u003d\u0027product-base\u0027][1]\");\n    private final By productList \u003d By.xpath(\"//li[@class\u003d\u0027product-base\u0027]\");\n    private final By resultsCount \u003d By.xpath(\"//span[@class\u003d\u0027title-count\u0027]\");\n    \n    /**\n     * Clicks on the first product from search results\n     * Product opens in NEW WINDOW - switches to it\n     */\n    public void clickFirstProduct() {\n        logger.info(\"Clicking on first product...\");\n        \n        // Store parent window handle BEFORE clicking\n        String parentWindow \u003d driver.getWindowHandle();\n        logger.info(\"Parent window: {}\", parentWindow);\n        \n        // Click on first product\n        waitForElementClickable(firstProduct).click();\n        logger.info(\"✓ Clicked on first product\");\n        \n        // Wait for new window to open\n        wait.until(driver -\u003e driver.getWindowHandles().size() \u003e 1);\n        logger.info(\"New window opened. Total windows: {}\", driver.getWindowHandles().size());\n        \n        // Switch to the new window\n        for (String windowHandle : driver.getWindowHandles()) {\n            if (!windowHandle.equals(parentWindow)) {\n                driver.switchTo().window(windowHandle);\n                logger.info(\"✓ Switched to product details window\");\n                break;\n            }\n        }\n        \n        // Wait for page to load\n        waitForPageLoad();\n        logger.info(\"Product page loaded: {}\", driver.getTitle());\n    }\n    \n    /**\n     * Gets the count of search results\n     */\n    public int getProductCount() {\n        return driver.findElements(productList).size();\n    }\n    \n    /**\n     * Verifies if search results are displayed\n     */\n    public boolean areSearchResultsDisplayed() {\n        return isElementDisplayed(productList);\n    }\n    \n    /**\n     * Gets results count text\n     */\n    public String getResultsCountText() {\n        if (isElementDisplayed(resultsCount)) {\n            return getElementText(resultsCount);\n        }\n        return \"Results count not displayed\";\n    }\n}",
+      "aiProbability": 95,
+      "aiTool": "AI Assistant",
+      "detectionMethod": "REALTIME_SPEED_ANALYSIS",
+      "lineCount": 67
+    },
+    {
+      "filePath": "C:/Users/Admin/IdeaProjects/myntra-automation-framework/src/test/java/com/myntra/pages/ProductDetailsPage.java",
+      "timestamp": 1766791028475,
+      "startOffset": 0,
+      "endOffset": 2569,
+      "codeContent": "package com.myntra.pages;\n\nimport org.openqa.selenium.By;\nimport org.openqa.selenium.WebElement;\nimport org.openqa.selenium.support.ui.ExpectedConditions;\n\nimport java.util.List;\n\npublic class ProductDetailsPage extends BasePage {\n    \n    // Using your exact working locators\n    private final By sizeButtons \u003d By.xpath(\"//div[@class\u003d\u0027size-buttons-buttonContainer\u0027]\");\n    private final By addToBagButton \u003d By.xpath(\"//div[text()\u003d\u0027ADD TO BAG\u0027]\");\n    \n    /**\n     * Selects product size (second size button)\n     * Matches your working code: sizeButtons.get(1).click()\n     */\n    public void selectSize() {\n        try {\n            logger.info(\"Waiting for size buttons...\");\n            \n            // Use explicit wait like your code\n            List\u003cWebElement\u003e sizes \u003d wait.until(\n                ExpectedConditions.visibilityOfAllElementsLocatedBy(sizeButtons)\n            );\n            \n            if (!sizes.isEmpty()) {\n                // Select second size (index 1) like your code\n                sizes.get(1).click();\n                logger.info(\"✓ Selected product size at index: 1\");\n            } else {\n                logger.warn(\"No size buttons found!\");\n            }\n            \n        } catch (Exception e) {\n            logger.error(\"Error selecting size: {}\", e.getMessage());\n            throw e;\n        }\n    }\n    \n    /**\n     * Adds product to bag\n     * Matches your working code exactly\n     */\n    public void addProductToBag() {\n        try {\n            // Wait for Add to Bag button like your code\n            waitForElementClickable(addToBagButton);\n            \n            String productName \u003d driver.getTitle();\n            logger.info(\"Selected Product is: {}\", productName);\n            \n            // Click Add to Bag\n            clickElement(addToBagButton);\n            logger.info(\"✓ Product is added to cart\");\n            \n            // Wait for action to complete\n            Thread.sleep(3000);\n            \n        } catch (InterruptedException e) {\n            Thread.currentThread().interrupt();\n            logger.error(\"Interrupted while adding to bag\");\n        } catch (Exception e) {\n            logger.error(\"Error adding product to bag: {}\", e.getMessage());\n            throw e;\n        }\n    }\n    \n    /**\n     * Gets product title\n     */\n    public String getProductTitle() {\n        return driver.getTitle();\n    }\n    \n    /**\n     * Verifies if Add to Bag button is displayed\n     */\n    public boolean isAddToBagButtonDisplayed() {\n        return isElementDisplayed(addToBagButton);\n    }\n}",
+      "aiProbability": 95,
+      "aiTool": "AI Assistant",
+      "detectionMethod": "REALTIME_SPEED_ANALYSIS",
+      "lineCount": 83
+    },
+    {
+      "filePath": "C:/Users/Admin/IdeaProjects/myntra-automation-framework/src/test/java/com/myntra/stepdefinitions/MyntraStepDefinitions.java",
+      "timestamp": 1766791113821,
+      "startOffset": 2739,
+      "endOffset": 3285,
+      "codeContent": "public void user_navigates_to_shopping_bag() {\n    shoppingBagPage.navigateToShoppingBag();\n    \n    // Now we\u0027re in the cart page (same window as product details)\n    String currentUrl \u003d DriverFactory.getDriver().getCurrentUrl();\n    logger.info(\"Current URL after navigating to bag: {}\", currentUrl);\n    \n    // Verify products are in bag\n    Assert.assertTrue(shoppingBagPage.isProductInBag(), \n            \"No products found in bag. Current URL: \" + currentUrl);\n    \n    logger.info(\"✓ Step: User navigated to shopping bag with products\");\n",
+      "aiProbability": 95,
+      "aiTool": "AI Assistant",
+      "detectionMethod": "REALTIME_SPEED_ANALYSIS",
+      "lineCount": 13
+    }
+  ],
+  "toolStats": {
+    "AI Assistant": {
+      "usageCount": 30,
+      "totalLines": 1059
+    }
+  }
+}
