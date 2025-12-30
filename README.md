@@ -480,4 +480,4 @@ Give a ⭐ if this project helped you!
 
 **Built with ❤️ using Java, Selenium & Cucumber**
 
-**Status:** Production Ready ✅ | Interview Showcase ⭐
+**Status:** Production Ready ✅
