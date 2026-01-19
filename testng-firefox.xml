@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Myntra E2E Test Suite" verbose="1">
-    <listeners>
-        <listener class-name="org.testng.reporters.EmailableReporter"/>
-    </listeners>
+<suite name="Firefox Browser Suite" verbose="1">
+    <parameter name="browser" value="firefox"/>
 
-    <test name="E2E Tests" preserve-order="true">
+    <test name="Firefox Tests">
         <classes>
             <class name="com.myntra.runners.TestRunner"/>
         </classes>
